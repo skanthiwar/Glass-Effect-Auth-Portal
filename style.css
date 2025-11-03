@@ -185,3 +185,36 @@ body::before {
     .form-container { margin-top: 15vh; }
     .dimmer-bar { width: 250px; justify-content: center; }
 }
+
+/* ==================================================================== 
+   6. PASSWORD TOGGLE STYLES
+==================================================================== */
+
+/* Container to hold both the input and the icon */
+.password-container {
+    position: relative;
+    margin-bottom: 1.5em; 
+}
+
+/* Ensure input takes full width within the container, but remove its margin-bottom */
+.password-container input {
+    width: 100%; 
+    margin-bottom: 0; 
+    padding-right: 3em; 
+}
+
+/* Style for the eye icon */
+.password-toggle {
+    position: absolute;
+    top: 50%; 
+    right: 15px; 
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: rgba(240, 240, 240, 0.7); 
+    font-size: 1.2em;
+    transition: color 0.2s;
+}
+
+.password-toggle:hover {
+    color: var(--cool-cyan); 
+}
