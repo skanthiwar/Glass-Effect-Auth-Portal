@@ -18,6 +18,14 @@ A self-exploration project demonstrating a modern, responsive authentication sys
 
 ---
 
+## 🌐 Live Demo
+
+You can interact with the final version of the **Glass-Effect Auth Portal** directly in your browser without needing to clone the repository.
+
+🔗 **VIEW LIVE PROJECT HERE:** **https://skanthiwar.github.io/Glass-Effect-Auth-Portal/**
+
+---
+
 ## 🔧 Technology Stack
 
 | Technology | Purpose |
@@ -34,9 +42,9 @@ Since this project contains no server-side code or complex dependencies, it is i
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/Glass-Effect-Auth-Portal.git](https://github.com/YOUR_USERNAME/Glass-Effect-Auth-Portal.git)
+    git clone [https://github.com/skanthiwar/Glass-Effect-Auth-Portal.git](https://github.com/skanthiwar/Glass-Effect-Auth-Portal.git)
     ```
-    *(Remember to replace `YOUR_USERNAME` with your actual GitHub username.)*
+    *(The full link includes the live demo path, but this is the correct format for cloning.)*
 2.  **Navigate to the Directory:**
     ```bash
     cd Glass-Effect-Auth-Portal
