@@ -1,0 +1,187 @@
+/* ==================================================================== 
+   1. CORE STYLES & VARIABLES
+==================================================================== */
+:root {
+    --light-intensity: 0.7; 
+    --bg-dark: #0A192F; 
+    --glass-base: rgba(255, 255, 255, 0.05); 
+    --cool-cyan: #00FFFF; 
+    --text-light: #F0F0F0; 
+    --dimmer-fixture: #1E293B; 
+    --max-form-width: 350px; 
+}
+
+body {
+    background-color: var(--bg-dark); 
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden; 
+    color: var(--text-light);
+    position: relative; 
+    transition: background-color 0.5s;
+}
+
+/* Ambient background glow effect */
+body::before {
+    content: '';
+    position: fixed; 
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300vw; 
+    max-width: 1500px; 
+    height: 300vh;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 10%, 
+                rgba(0, 255, 255, calc(var(--light-intensity) * 0.4)), 
+                rgba(0, 200, 200, calc(var(--light-intensity) * 0.1)),
+                transparent 50%); 
+    z-index: -1;
+    pointer-events: none;
+    transition: background 0.5s;
+}
+
+/* ==================================================================== 
+   2. LIGHT FIXTURE & DIMMER STYLES
+==================================================================== */
+.light-container {
+    position: fixed; 
+    top: 5vh; 
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+}
+
+.dimmer-bar { width: 300px; height: 30px; background-color: var(--dimmer-fixture); border-radius: 5px; position: relative; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; }
+.bulb-wire { width: 3px; height: 50px; background-color: #444; position: absolute; top: 25px; }
+.bulb-shade { 
+    width: 120px; height: 40px; background-color: #E0E0E0; border-radius: 0 0 60px 60px; position: absolute; top: 75px; 
+    box-shadow: 0 0 15px 5px rgba(0, 255, 255, calc(var(--light-intensity) * 0.8)), inset 0 -5px 10px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.5s;
+}
+.bulb-shade::after {
+    content: ''; position: absolute; bottom: 0; left: 5%; width: 90%; height: 5px; background: var(--cool-cyan);
+    opacity: calc(var(--light-intensity) * 0.8); border-radius: 0 0 50% 50%; transition: opacity 0.5s;
+}
+
+#dimmerSlider { -webkit-appearance: none; width: 150px; height: 5px; background: #555; border-radius: 4px; cursor: pointer; outline: none; position: static; }
+#dimmerSlider::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--cool-cyan); cursor: pointer; box-shadow: 0 0 8px var(--cool-cyan); border: 3px solid var(--bg-dark); }
+
+
+/* ==================================================================== 
+   3. FORM CONTAINER STYLES & TRANSITIONS
+==================================================================== */
+.form-container {
+    width: 90vw;
+    max-width: var(--max-form-width); 
+    margin-top: 25vh; 
+    position: relative; 
+    min-height: 520px;
+}
+
+.login-form, .register-form {
+    width: 100%;
+    padding: 35px 20px;
+    border-radius: 15px; 
+    background: var(--glass-base);
+    backdrop-filter: blur(15px); 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    box-sizing: border-box;
+    position: absolute; 
+    top: 0;
+    left: 0;
+    opacity: calc(var(--light-intensity) * 0.9 + 0.1); 
+    transition: opacity 0.3s ease-out, visibility 0s 0.3s, border 0.2s; 
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); 
+    visibility: visible;
+}
+
+.register-form {
+    opacity: 0; 
+    visibility: hidden;
+    z-index: 5;
+    transition: opacity 0.3s ease-out, visibility 0s 0.3s, border 0.2s;
+}
+
+.form-container.show-register .login-form {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-out, visibility 0s 0.3s;
+}
+
+.form-container.show-register .register-form {
+    opacity: calc(var(--light-intensity) * 0.9 + 0.1); 
+    visibility: visible;
+    transition: opacity 0.3s ease-out, border 0.2s;
+}
+
+/* ==================================================================== 
+   4. FORM ELEMENTS & ERROR STYLES
+==================================================================== */
+.login-form h3, .register-form h3 { font-weight: 600; font-size: 1.8em; margin-bottom: 1.5em; color: var(--text-light); }
+.login-form label, .register-form label { display: block; text-align: left; margin-bottom: 0.5em; font-size: 0.9em; color: rgba(240, 240, 240, 0.8); }
+
+.login-form input, .register-form input {
+    width: 100%; padding: 1em; margin-bottom: 1.5em; border: none; border-radius: 8px; box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.1); color: var(--text-light); transition: all 0.3s;
+}
+
+.login-form input::placeholder, .register-form input::placeholder { color: #CCCCCC; opacity: 0.8; }
+
+.login-form input:focus, .register-form input:focus { 
+    outline: none; border: 1px solid var(--cool-cyan); background-color: rgba(255, 255, 255, 0.15); 
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); 
+}
+
+.login-btn, .register-btn {
+    width: 100%; padding: 1em; margin-top: 1em; background: var(--cool-cyan); color: #101010; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 1.1em;
+    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.4); transition: background-color 0.2s, transform 0.1s;
+}
+
+.login-btn:hover, .register-btn:hover { background-color: #33FFFF; transform: translateY(-1px); }
+
+.form-switch-link {
+    display: block; 
+    margin-top: 15px; 
+    color: var(--cool-cyan); 
+    text-decoration: none; 
+    font-size: 0.9em; 
+    cursor: pointer; 
+    transition: color 0.2s;
+    text-align: center;
+}
+.form-switch-link:hover { color: #33FFFF; text-decoration: underline; }
+
+.error-message {
+    color: #FF6666; 
+    margin-bottom: 1em; 
+    text-align: left; 
+    font-size: 0.9em;
+    font-weight: 500;
+    min-height: 20px; 
+}
+
+
+/* ==================================================================== 
+   5. MOBILE RESPONSIVENESS
+==================================================================== */
+@media (max-width: 500px) {
+    body::before {
+        background: radial-gradient(circle at 50% 10%, 
+                    rgba(0, 255, 255, calc(var(--light-intensity) * 0.4)), 
+                    rgba(0, 200, 200, calc(var(--light-intensity) * 0.1)),
+                    transparent 80%);
+    }
+    .light-container { top: 2vh; }
+    .form-container { margin-top: 15vh; }
+    .dimmer-bar { width: 250px; justify-content: center; }
+}
