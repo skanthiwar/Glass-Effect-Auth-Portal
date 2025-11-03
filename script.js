@@ -193,3 +193,20 @@ function handleRegister(event) {
 // Initialize light control
 dimmer.addEventListener('input', updateLight);
 updateLight();
+
+/**
+ * Toggles the visibility of a password field and updates the icon.
+ * @param {string} inputId - The ID of the password input field.
+ * @param {HTMLElement} element - The clicked span element (the eye icon).
+ */
+function togglePasswordVisibility(inputId, element) {
+    const input = document.getElementById(inputId);
+    
+    if (input.type === 'password') {
+        input.type = 'text';
+        element.textContent = '🙈'; // Change icon to closed eye
+    } else {
+        input.type = 'password';
+        element.textContent = '👁️'; // Change icon to open eye
+    }
+}
