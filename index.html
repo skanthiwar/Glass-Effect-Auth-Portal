@@ -1,41 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Glass-Effect Auth Portal</title>
-    
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div class="light-container">
         <div class="dimmer-bar">
-             <input type="range" id="dimmerSlider" min="0" max="100" value="70">
+            <input type="range" id="dimmerSlider" min="0" max="100" value="70">
         </div>
         <div class="bulb-wire"></div>
         <div class="bulb-shade"></div>
     </div>
 
     <div class="form-container" id="formContainer">
-        
+
         <div class="login-form">
             <form onsubmit="handleLogin(event)">
                 <h3>SECURE ACCESS</h3>
-                
+
                 <label for="login-email">EMAIL ADDRESS</label>
-                <input type="text" id="login-email" name="login-email" required placeholder="Enter your registered email">
-                
+                <input type="text" id="login-email" name="login-email" required
+                    placeholder="Enter your registered email">
+
                 <label for="login-password">PASSWORD</label>
-                <input type="password" id="login-password" name="login-password" required placeholder="••••••••">
-                
+                <div class="password-container">
+                    <input type="password" id="login-password" name="login-password" required placeholder="••••••••">
+                    <span class="password-toggle" onclick="togglePasswordVisibility('login-password', this)">👁️</span>
+                </div>
+
                 <div id="login-errors" class="error-message"></div>
-                
+
                 <button type="submit" class="login-btn">LOGIN</button>
-                
+
                 <a class="form-switch-link" onclick="handleForgotPasswordClick()">
                     <strong>Forgot Password?</strong>
-                </a> 
+                </a>
 
                 <a class="form-switch-link" onclick="showRegister()">Not a member? <strong>Register Here.</strong></a>
             </form>
@@ -44,24 +50,35 @@
         <div class="register-form">
             <form onsubmit="handleRegister(event)">
                 <h3>CREATE ACCOUNT</h3>
-                
+
                 <label for="reg-name">FULL NAME</label>
                 <input type="text" id="reg-name" name="reg-name" required placeholder="Enter your full name">
 
                 <label for="reg-email">EMAIL</label>
-                <input type="email" id="reg-email" name="reg-email" required placeholder="Enter a professional email (e.g. user@domain.com)">
+                <input type="email" id="reg-email" name="reg-email" required
+                    placeholder="Enter a professional email (e.g. user@domain.com)">
 
                 <label for="reg-password">PASSWORD</label>
-                <input type="password" id="reg-password" name="reg-password" required placeholder="8+ chars, with Uppercase, Number, Symbol">
+                <div class="password-container">
+                    <input type="password" id="reg-password" name="reg-password" required
+                        placeholder="8+ chars, with Uppercase, Number, Symbol">
+                    <span class="password-toggle" onclick="togglePasswordVisibility('reg-password', this)">👁️</span>
+                </div>
 
                 <label for="reg-confirm-password">CONFIRM PASSWORD</label>
-                <input type="password" id="reg-confirm-password" name="reg-confirm-password" required placeholder="Re-enter password">
-                
-                <div id="register-errors" class="error-message"></div> 
-                
+                <div class="password-container">
+                    <input type="password" id="reg-confirm-password" name="reg-confirm-password" required
+                        placeholder="Re-enter password">
+                    <span class="password-toggle"
+                        onclick="togglePasswordVisibility('reg-confirm-password', this)">👁️</span>
+                </div>
+
+                <div id="register-errors" class="error-message"></div>
+
                 <button type="submit" class="register-btn">REGISTER</button>
-                
-                <a class="form-switch-link" onclick="showLogin()">Already have an account? <strong>Login Here.</strong></a>
+
+                <a class="form-switch-link" onclick="showLogin()">Already have an account? <strong>Login
+                        Here.</strong></a>
             </form>
         </div>
 
@@ -69,4 +86,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
